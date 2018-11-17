@@ -4,7 +4,12 @@
     "target": "es5",
     "sourceMap": true,
     "outDir": "./dist/",
-    "jsx": "react"
+    "jsx": "react",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "baseUrl": "./src"
   },
   "exclude": [
     "node_modules"
