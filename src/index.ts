@@ -1,14 +1,7 @@
-import {
-    TextInput,
-    Suggest
-} from 'components/redux-form'
-
-
-export function configure() {
-
-}
+import { registerTypes as registerFilterTypes } from 'components/filters/factory'
+import ExtTable from './components'
 
 export {
-    TextInput,
-    Suggest
+    registerFilterTypes,
+    ExtTable
 }

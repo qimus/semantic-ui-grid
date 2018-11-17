@@ -30,11 +30,6 @@ export type ProviderSettings = {
     pageLimits?: number[]
 };
 
-
-/**
- * @class AbstractProvider
- * @description Абстрактный класс провайдера данных
- */
 export default abstract class AbstractProvider {
     private pageParam = 'page';
 
@@ -220,16 +215,6 @@ export default abstract class AbstractProvider {
     }
 
     /**
-     * Преобразование объекта, представляющего сортировку в строку
-     * @param {Object} sort
-     * @returns {string}
-     * @private
-     */
-    _transformSortToString(sort) {
-        return sortToString(sort);
-    }
-
-    /**
      * Установить сортировку по полю
      * @param {String} field
      * @param {String} direction
@@ -239,7 +224,7 @@ export default abstract class AbstractProvider {
         sort[field] = direction;
         this.fetch({ sort });
         this._navigate({
-            sort: this._transformSortToString(sort)
+            sort: sortToString(sort)
         });
     }
 

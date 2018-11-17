@@ -6,19 +6,24 @@ import {
 export const TYPE_TEXT = 'text';
 export const TYPE_SUGGEST = 'suggest';
 
-const map = {
+let typeMapping: object = {
     [TYPE_TEXT]: TextInput,
     [TYPE_SUGGEST]: Suggest
 };
 
+function registerTypes(types: object) {
+    typeMapping = { ...typeMapping, ...types };
+}
+
 const factory = (type) => {
-    if (typeof map[type] === 'undefined') {
+    if (typeof typeMapping[type] === 'undefined') {
         throw new Error(`Unknown filter type - "${type}"`);
     }
 
-    return map[type]
+    return typeMapping[type]
 };
 
 export {
-    factory
-}
+    factory,
+    registerTypes
+};
