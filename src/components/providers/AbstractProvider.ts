@@ -8,19 +8,7 @@ import {
 
 export const DEFAULT_SORT_DIR = SORT_ASC;
 
-export interface HistoryInterface {
-    location: any;
-    push(route: string): void;
-}
-
-let history: HistoryInterface = {
-    location: window.location,
-    push(route: string) {}
-};
-
-export const setHistory = (hist: HistoryInterface) => {
-    history = hist;
-};
+import { history } from '../../index'
 
 export type ProviderSettings = {
     activePage?: number,

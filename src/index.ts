@@ -6,6 +6,18 @@ import AbstractProvider from './components/providers/AbstractProvider'
 import ApiDataProvider from './components/providers/ApiDataProvider'
 import ArrayDataProvider from './components/providers/ArrayDataProvider'
 
+export interface HistoryInterface {
+    location: any;
+    push(route: string): void;
+}
+
+let history: HistoryInterface = {
+    location: window.location,
+    push(route: string) {}
+};
+
+const setHistory = (newHistory) => history = newHistory;
+
 import {
     DeleteAction,
     EditAction
@@ -39,5 +51,7 @@ export {
     ExtTable,
     Provider,
     Action,
-    Column
+    Column,
+    history,
+    setHistory
 }

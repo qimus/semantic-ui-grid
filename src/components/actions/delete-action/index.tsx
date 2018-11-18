@@ -8,13 +8,13 @@ import ConfirmDialog from '../../modals/confirm-dialog'
 
 interface DeleteActionProps {
     row: any;
-    action(row: any, dispatch: any): {};
+    action(row: any): {};
     dispatch(): {};
     header?: string;
     content: string;
 }
 
-export class DeleteAction extends React.Component<DeleteActionProps, {}> {
+export default class DeleteAction extends React.Component<DeleteActionProps, {}> {
     static defaultProps = {
         header: 'Удаление записи',
         message: 'Вы уверены что хотите совершить данное действие?'
@@ -34,8 +34,8 @@ export class DeleteAction extends React.Component<DeleteActionProps, {}> {
     };
 
     handleConfirm = () => {
-        const { row, action, dispatch } = this.props;
-        action(row, dispatch);
+        const { row, action } = this.props;
+        action(row);
     };
 
     render() {
@@ -58,7 +58,3 @@ export class DeleteAction extends React.Component<DeleteActionProps, {}> {
         )
     }
 }
-
-const mapDispatchToProps = (dispatch) => ({ dispatch });
-
-export default connect(null, mapDispatchToProps)(DeleteAction);

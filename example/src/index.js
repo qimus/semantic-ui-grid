@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactDom from 'react-dom'
-
+import { createBrowserHistory } from 'history'
+import { Router, Route } from 'react-router'
 import {
     Grid,
     Header
@@ -11,29 +12,17 @@ import {
     Provider,
     Action,
     ExtTable,
+    setHistory
 } from 'semantic-grid'
 
 import 'semantic-ui-css/semantic.min.css'
 
-const dataStub = [
-    {
-        name: 'John',
-        age: 36,
-        city: 'New York'
-    },
-    {
-        name: 'Denis',
-        age: 18,
-        city: 'Moscow'
-    },
-    {
-        name: 'Artur',
-        age: 30,
-        city: 'Astana'
-    },
-];
+import store from './store'
 
-const provider = new Provider.ArrayDataProvider({ data: dataStub });
+const history = createBrowserHistory({ basename: '' });
+setHistory(history);
+
+const provider = new Provider.ArrayDataProvider({ data: store.getItems() });
 
 const columns = [
     {
@@ -55,6 +44,16 @@ const columns = [
         title: 'Age',
         field: 'age',
         sortable: true
+    },
+    {
+        title: 'Actions',
+        type: Column.ACTION_COLUMN,
+        actions: [
+            {
+                component: Action.DeleteAction,
+                action: ({ id }, dispatch) => alert('record delete')
+            }
+        ]
     }
 ];
 
@@ -66,6 +65,7 @@ class DemoGrid extends Component {
                     <Grid.Column width={16}>
                         <Header as={'h2'}>Semantic ui grid example</Header>
                         <ExtTable
+                            _r={Math.random()}
                             sortable={true}
                             header={'Sortable grid'}
                             provider={provider}
@@ -77,7 +77,17 @@ class DemoGrid extends Component {
     }
 }
 
+class App extends Component {
+    render() {
+        return (
+            <Router history={history}>
+                <Route path={''} component={DemoGrid} />
+            </Router>
+        )
+    }
+}
+
 ReactDom.render(
-    <DemoGrid />,
+    <App />,
     document.getElementById('app-container')
 );

@@ -5,17 +5,20 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:js": "npx babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline"
+    "build:js": "npx babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
+    "copy": " cp -r lib/* example/node_modules/semantic-grid/lib/"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/react": "^16.7.6",
     "@types/react-dom": "^16.0.9",
+    "history": "^4.7.2",
     "qs": "^6.5.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^5.1.1",
+    "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "redux-form": "^7.4.2",
     "semantic-ui-react": "^0.83.0"
