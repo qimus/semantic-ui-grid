@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {
-    Table
+    Table,
+    Label
 } from 'semantic-ui-react'
 import AbstractProvider from "../providers/AbstractProvider";
 
@@ -29,6 +30,23 @@ export default class HeaderCell extends React.Component<HeaderCellProps, {}> {
         }
     };
 
+    getSortPositionNumber(name) {
+        const { provider } = this.props;
+        const sortParams = (provider.getSearchParam('sort') || '')
+            .split(',')
+            .map(item => {
+                if (/^[+-]/.test(item)) {
+                    return item.substr(1);
+                }
+            });
+
+        let positionSort = sortParams.indexOf(name);
+
+        return positionSort > -1 && (
+            <Label circular size={'mini'}>{positionSort + 1}</Label>
+        )
+    }
+
     render() {
         const { item, sort } = this.props;
         let sorted;
@@ -41,7 +59,7 @@ export default class HeaderCell extends React.Component<HeaderCellProps, {}> {
             <Table.HeaderCell
                 sorted={sorted}
                 onClick={this.handleSort}
-            >{item.title || ''}</Table.HeaderCell>
+            >{item.title || ''}{item.field && this.getSortPositionNumber(item.field)}</Table.HeaderCell>
         )
     }
 }

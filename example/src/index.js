@@ -51,7 +51,10 @@ const columns = [
         actions: [
             {
                 component: Action.DeleteAction,
-                action: ({ id }) => store.deleteItem(id)
+                action: ({ id }) => {
+                    store.deleteItem(id);
+                    provider.fetch()
+                }
             }
         ]
     }

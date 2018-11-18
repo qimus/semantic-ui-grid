@@ -32,7 +32,7 @@ export default class ArrayDataProvider extends AbstractProvider {
     }
 
     fetch(params?: any): void {
-        if (Object.keys(params.sort).length) {
+        if (params && params.sort && Object.keys(params.sort).length) {
             this.data.sort((i1, i2) => {
                 for (let sortField of Object.keys(params.sort)) {
                     const sortDir = params.sort[sortField];
