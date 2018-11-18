@@ -1,17 +1,23 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
 import {
     Table
 } from 'semantic-ui-react'
 import { withRouter } from 'react-router'
+import AbstractProvider from "../providers/AbstractProvider";
 
 const sortMap = {
     'asc': 'ascending',
     'desc': 'descending'
 };
 
+interface HeaderCellProps {
+    provider: AbstractProvider,
+    item: any,
+    sort: string;
+}
+
 @withRouter
-export default class HeaderCell extends Component {
+export default class HeaderCell extends React.Component<HeaderCellProps, {}> {
     handleSort = () => {
         const { provider, item, sort } = this.props;
         if (item.sortable) {
@@ -35,10 +41,3 @@ export default class HeaderCell extends Component {
         )
     }
 }
-
-HeaderCell.propTypes = {
-    item: PropTypes.object,
-    provider: PropTypes.func,
-    sort: PropTypes.string,
-    history: PropTypes.object
-};

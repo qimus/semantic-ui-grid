@@ -1,13 +1,21 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
 import {
     Table,
     Header
 } from 'semantic-ui-react'
 
-import HeaderCell from './cell'
+import { Column } from 'components/types'
 
-export default class TableHeader extends Component {
+import HeaderCell from './cell'
+import AbstractProvider from '../providers/AbstractProvider'
+
+interface TableHeaderProps {
+    columns: Column[],
+    provider: AbstractProvider,
+    header: string;
+}
+
+export default class TableHeader extends React.Component<TableHeaderProps, {}> {
     render() {
         const { columns, provider, header } = this.props;
         const sort = provider.getSort();
@@ -41,10 +49,3 @@ export default class TableHeader extends Component {
         )
     }
 }
-
-TableHeader.propTypes = {
-    provider: PropTypes.func,
-    columns: PropTypes.array,
-    header: PropTypes.any,
-    headerIcon: PropTypes.string
-};

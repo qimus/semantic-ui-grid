@@ -9,7 +9,8 @@
       "dom",
       "esnext"
     ],
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "experimentalDecorators": true
   },
   "exclude": [
     "node_modules"

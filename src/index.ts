@@ -1,4 +1,4 @@
-import { registerTypes as registerFilterTypes } from 'components/filters/factory'
+import { registerTypes as registerFilterTypes } from './components/filters/factory'
 
 import ExtTable from './components'
 
@@ -9,7 +9,7 @@ import ArrayDataProvider from './components/providers/ArrayDataProvider'
 import {
     DeleteAction,
     EditAction
-} from 'components/actions'
+} from './components/actions'
 
 import {
     ACTION_COLUMN,
