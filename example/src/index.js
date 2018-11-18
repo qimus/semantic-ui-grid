@@ -51,7 +51,7 @@ const columns = [
         actions: [
             {
                 component: Action.DeleteAction,
-                action: ({ id }, dispatch) => alert('record delete')
+                action: ({ id }) => store.deleteItem(id)
             }
         ]
     }
@@ -65,7 +65,6 @@ class DemoGrid extends Component {
                     <Grid.Column width={16}>
                         <Header as={'h2'}>Semantic ui grid example</Header>
                         <ExtTable
-                            _r={Math.random()}
                             sortable={true}
                             header={'Sortable grid'}
                             provider={provider}

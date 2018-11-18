@@ -209,7 +209,11 @@ export default abstract class AbstractProvider {
      */
     setSortField(field, direction) {
         let sort = this.getSort();
-        sort[field] = direction;
+        if (!direction) {
+            delete sort[field]
+        } else {
+            sort[field] = direction;
+        }
         this.fetch({ sort });
         this._navigate({
             sort: sortToString(sort)

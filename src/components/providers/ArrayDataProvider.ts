@@ -31,5 +31,32 @@ export default class ArrayDataProvider extends AbstractProvider {
         return this;
     }
 
-    fetch(params?: any): void {}
+    fetch(params?: any): void {
+        if (Object.keys(params.sort).length) {
+            this.data.sort((i1, i2) => {
+                for (let sortField of Object.keys(params.sort)) {
+                    const sortDir = params.sort[sortField];
+                    if (i1[sortField] === i2[sortField]) {
+                        continue;
+                    }
+
+                    if (sortDir === 'asc') {
+                        if (i1[sortField] > i2[sortField]) {
+                            return 1
+                        } else {
+                            return -1
+                        }
+                    } else {
+                        if (i1[sortField] < i2[sortField]) {
+                            return 1
+                        } else {
+                            return -1
+                        }
+                    }
+                }
+
+                return 0;
+            });
+        }
+    }
 }

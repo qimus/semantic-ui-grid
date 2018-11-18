@@ -19,7 +19,13 @@ export default class HeaderCell extends React.Component<HeaderCellProps, {}> {
     handleSort = () => {
         const { provider, item, sort } = this.props;
         if (item.sortable) {
-            provider.setSortField(item.field, (sort === 'asc') ? 'desc' : 'asc');
+            let dir;
+            if (sort === 'desc') {
+                dir = null;
+            } else {
+                dir = (sort === 'asc') ? 'desc' : 'asc';
+            }
+            provider.setSortField(item.field, dir);
         }
     };
 

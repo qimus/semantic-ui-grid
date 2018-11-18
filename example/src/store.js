@@ -12,9 +12,15 @@ const data = [
         city: 'Moscow'
     },
     {
-        id:3 ,
+        id: 3 ,
         name: 'Artur',
         age: 30,
+        city: 'Astana'
+    },
+    {
+        id: 4 ,
+        name: 'Valera',
+        age: 33,
         city: 'Astana'
     },
 ];

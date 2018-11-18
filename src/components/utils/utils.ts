@@ -25,7 +25,7 @@ export const sortToString = (sort: any) => {
     let result = [];
     let sortMap = flip(SORT_MAP);
     for (let field in sort) {
-        if (sort.hasOwnProperty(field)) {
+        if (sort.hasOwnProperty(field) && field) {
             result.push(`${sortMap[sort[field]]}${field}`);
         }
     }
