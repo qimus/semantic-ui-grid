@@ -2,7 +2,6 @@ import * as React from 'react'
 import {
     Table
 } from 'semantic-ui-react'
-import { withRouter } from 'react-router'
 import AbstractProvider from "../providers/AbstractProvider";
 
 const sortMap = {
@@ -16,7 +15,6 @@ interface HeaderCellProps {
     sort: string;
 }
 
-@withRouter
 export default class HeaderCell extends React.Component<HeaderCellProps, {}> {
     handleSort = () => {
         const { provider, item, sort } = this.props;
