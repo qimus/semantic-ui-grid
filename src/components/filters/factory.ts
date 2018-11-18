@@ -1,7 +1,7 @@
 import {
     TextInput,
     Suggest
-} from 'components/redux-form'
+} from '../redux-form'
 
 export const TYPE_TEXT = 'text';
 export const TYPE_SUGGEST = 'suggest';
