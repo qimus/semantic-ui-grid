@@ -26,7 +26,7 @@ export default class ArrayDataProvider extends AbstractProvider {
      * @param {array} data
      * @return {ArrayDataProvider}
      */
-    setData(data: any[]) {
+    setItems(data: any[]) {
         this.data = data;
         return this;
     }
@@ -58,5 +58,7 @@ export default class ArrayDataProvider extends AbstractProvider {
                 return 0;
             });
         }
+
+        console.log('data:', this.data);
     }
 }
