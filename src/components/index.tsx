@@ -38,7 +38,7 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
 
     state = { activePage: 1 };
 
-    componentDidMount() {
+    UNSAFE_componentWillMount() {
         if (this.props.filter && !this.filter) {
             const { filter, provider } = this.props;
             this.filter = createFilterForm({

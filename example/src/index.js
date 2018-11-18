@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import ReactDom from 'react-dom'
 import { createBrowserHistory } from 'history'
 import { Router, Route, Switch, withRouter } from 'react-router'
+import { createStore, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
+import { reducer as formReducer } from 'redux-form'
 import {
     Grid,
     Header,
@@ -12,7 +15,7 @@ import {
 
 import {
     Column,
-    Provider,
+    Provider as DataProvider,
     Action,
     ExtTable,
     setHistory
@@ -25,7 +28,7 @@ import store from './store'
 const history = createBrowserHistory({ basename: '' });
 setHistory(history);
 
-const provider = new Provider.ArrayDataProvider({ data: store.getItems() });
+const provider = new DataProvider.ArrayDataProvider({ data: store.getItems() });
 
 const columns = [
     {
@@ -182,15 +185,22 @@ class EditItem extends Component {
     }
 }
 
+const storeRedux = createStore(
+    combineReducers({ form: formReducer }),
+    {}
+);
+
 class App extends Component {
     render() {
         return (
-            <Router history={history}>
-                <Switch>
-                    <Route exact path={'/'} component={DemoGrid} />
-                    <Route exact path={'/users/:id'} component={EditItem} />
-                </Switch>
-            </Router>
+            <Provider store={storeRedux}>
+                <Router history={history}>
+                    <Switch>
+                        <Route exact path={'/'} component={DemoGrid} />
+                        <Route exact path={'/users/:id'} component={EditItem} />
+                    </Switch>
+                </Router>
+            </Provider>
         )
     }
 }

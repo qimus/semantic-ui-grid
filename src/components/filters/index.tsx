@@ -26,9 +26,14 @@ interface FilterProps {
     items: any[];
     handleSubmit: (values) => any;
     itemsNames: any[];
+    filterNamePrefix: string;
 }
 
 class Filter extends React.Component<FilterProps, {}> {
+    static defaultProps = {
+        filterNamePrefix: 'filter'
+    };
+
     handleSearch = (values) => {
         this.props.handleFilter(values, this.props.itemsNames);
     };
@@ -46,11 +51,12 @@ class Filter extends React.Component<FilterProps, {}> {
                     <Grid.Row>
                         {items.map((item, i) => {
                             const { type, ...props } = item;
-                            let Component = factory(type);
+                            let Component = factory(type),
+                                name = this.props.filterNamePrefix + '[' + item.name + ']';
 
                             return (
                                 <div style={styles.item} key={i}>
-                                    <Field key={i} component={Component} {...props}/>
+                                    <Field key={i} {...props} component={Component} name={name}/>
                                 </div>
                             )
                         })}
