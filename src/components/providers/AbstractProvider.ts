@@ -29,7 +29,7 @@ export default abstract class AbstractProvider {
 
     private _pageLimits: number[] = [ 10, 30, 50, 100 ];
 
-    protected constructor(params: ProviderSettings) {
+    protected constructor(params: ProviderSettings = {}) {
         if (params.activePage) {
             this.setActivePage(params.activePage);
         }
