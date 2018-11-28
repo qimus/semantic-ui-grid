@@ -75,7 +75,9 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
         //добавляем в search строки браузера значения фильтра для сохранения состояния
         this.props.provider._navigate({ [this.props.filterNamePrefix]: values }, (search) => {
             fieldNames.forEach(fieldName => {
-                delete search[fieldName];
+                if (search[this.props.filterNamePrefix]) {
+                    delete search[this.props.filterNamePrefix][fieldName];
+                }
             });
 
             return search;

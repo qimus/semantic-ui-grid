@@ -230,7 +230,7 @@ export default abstract class AbstractProvider {
         let queryParams = this.getSearchParams();
 
         if (callback) {
-            queryParams = callback(queryParams);
+            queryParams = callback({ ...queryParams });
         }
 
         let search = qs.stringify({ ... queryParams, ...params });
