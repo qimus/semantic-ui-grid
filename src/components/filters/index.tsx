@@ -88,7 +88,7 @@ export function createFilterForm({ name, initialValues, items = [], component = 
 
     const mapStateToProps = (state, props) => {
         return {
-            initialValues: filterInitialValues({ ...initialValues }),
+            initialValues: { ...initialValues },
             itemsNames
         }
     };
