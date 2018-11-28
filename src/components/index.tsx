@@ -24,14 +24,15 @@ export interface ExtTableProps {
     header?: string;
     sortable?: boolean;
     isFetching: boolean;
-
+    filterPrefix: string;
 }
 
 export default class ExtTable extends React.Component<ExtTableProps, {}> {
     static defaultProps = {
         columns: [],
         sortable: false,
-        isFetching: false
+        isFetching: false,
+        filterPrefix: 'filter'
     };
 
     filter = null;
@@ -45,7 +46,8 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
                 name: filter.name,
                 items: filter.items,
                 handleFilter: this.handleFilter,
-                initialValues: provider.getSearchParams()
+                initialValues: provider.getSearchParam(this.props.filterPrefix, {}),
+                filterPrefix: this.props.filterPrefix
             });
         }
     }
