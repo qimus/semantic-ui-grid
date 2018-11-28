@@ -24,7 +24,7 @@ export interface ExtTableProps {
     header?: string;
     sortable?: boolean;
     isFetching: boolean;
-    filterPrefix: string;
+    filterNamePrefix: string;
 }
 
 export default class ExtTable extends React.Component<ExtTableProps, {}> {
@@ -32,7 +32,7 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
         columns: [],
         sortable: false,
         isFetching: false,
-        filterPrefix: 'filter'
+        filterNamePrefix: 'filter'
     };
 
     filter = null;
@@ -46,8 +46,8 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
                 name: filter.name,
                 items: filter.items,
                 handleFilter: this.handleFilter,
-                initialValues: provider.getSearchParam(this.props.filterPrefix, {}),
-                filterPrefix: this.props.filterPrefix
+                initialValues: provider.getSearchParam(this.props.filterNamePrefix, {}),
+                filterNamePrefix: this.props.filterNamePrefix
             });
         }
     }
@@ -73,7 +73,7 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
      */
     handleFilter = (values, fieldNames) => {
         //добавляем в search строки браузера значения фильтра для сохранения состояния
-        this.props.provider._navigate(values, (search) => {
+        this.props.provider._navigate({ [this.props.filterNamePrefix]: values }, (search) => {
             fieldNames.forEach(fieldName => {
                 delete search[fieldName];
             });

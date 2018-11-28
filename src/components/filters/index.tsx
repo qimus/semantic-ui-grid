@@ -52,7 +52,7 @@ class Filter extends React.Component<FilterProps, {}> {
                         {items.map((item, i) => {
                             const { type, ...props } = item;
                             let Component = factory(type),
-                                name = this.props.filterNamePrefix + '[' + item.name + ']';
+                                name = item.name;
 
                             return (
                                 <div style={styles.item} key={i}>
@@ -60,9 +60,9 @@ class Filter extends React.Component<FilterProps, {}> {
                                 </div>
                             )
                         })}
-                    <Grid.Column verticalAlign={'bottom'} style={styles.button}>
-                        <Button primary icon={'filter'}/>
-                    </Grid.Column>
+                        <Grid.Column verticalAlign={'bottom'} style={styles.button}>
+                            <Button primary icon={'filter'}/>
+                        </Grid.Column>
                     </Grid.Row>
                 </Grid>
             </Form>
@@ -88,7 +88,7 @@ export function createFilterForm({ name, initialValues, items = [], component = 
 
     const mapStateToProps = (state, props) => {
         return {
-            initialValues: { ...initialValues },
+            initialValues: filterInitialValues(initialValues),
             itemsNames
         }
     };
