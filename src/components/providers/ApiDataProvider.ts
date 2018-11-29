@@ -7,11 +7,11 @@ export default class ApiDataProvider extends AbstractDataProvider {
     _r = 0;
     _defaultParams = {};
 
-    setApiCallback() {
+    getApiCallback() {
         return this._apiCallback;
     }
 
-    getApiCallback(value) {
+    setApiCallback(value) {
         this._apiCallback = value;
     }
 
