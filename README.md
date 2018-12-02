@@ -92,12 +92,6 @@ const filter = {
 };
 
 class DemoGrid extends Component {
-    componentDidMount() {
-        updateCallback = () => {
-            this.setState({r: Math.random()})
-        };
-    }
-
     render() {
         return (
             <Grid>
@@ -120,6 +114,54 @@ class DemoGrid extends Component {
 }
 ```
 
+ExtTable props
+-------
+
+|Prop|Type|Description|
+|----|----|-----------|
+|filter|Object| which include filter name and array of filter items |
+|provider|Function| Instance one of ApiDataProvider or ArrayDataProvider|
+|onPageChange| Function| Handler which will be call after each one page change|
+|columns|Array| Array of table columns|
+|header|String| Header of grid|
+|sortable|Bool|Columns of table can sortable|
+|isFetching|Bool| Indicate to show loader|
+|filterNamePrefix|String|Prefix for filter params in search of browser|
+
+Custom types
+------------
+You can define custom types of columns and filters.
+For example:
+
+```javascript
+import { registerColumnTypes } from 'semantic-grid'
+
+import MyCustomSuperColumn from './super-column'
+
+const SUPER_COLUMN = 'super_column';
+
+registerColumnTypes({
+    [SUPER_COLUMN]: MyCustomSuperColumn
+});
+
+let columns = [
+    {
+        type: SUPER_COLUMN,
+        //.....
+    }
+];
+
+class MyComponent extends React.Component {
+    render() {
+        return (
+            <ExtTable columns={columns}
+                //some other props
+            />
+        )
+    }
+}
+
+```
 
 Screenshots
 ----------

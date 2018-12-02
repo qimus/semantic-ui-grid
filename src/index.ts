@@ -1,4 +1,5 @@
 import { registerTypes as registerFilterTypes } from './components/filters/factory'
+import { registerColumnTypes } from './components/columns'
 
 import ExtTable from './components'
 
@@ -48,6 +49,7 @@ const Column = {
 
 export {
     registerFilterTypes,
+    registerColumnTypes,
     ExtTable,
     Provider,
     Action,
