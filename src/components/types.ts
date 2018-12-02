@@ -30,3 +30,9 @@ export interface RequestInterface {
 export interface EventOrValueHandler {
     (value: any): void
 }
+
+export interface SearchParams {
+    filter?: object,
+    sort?: object,
+    [prop: string]: any
+}

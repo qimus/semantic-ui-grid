@@ -1,26 +1,26 @@
 import AbstractDataProvider from './AbstractProvider'
 
 export default class ApiDataProvider extends AbstractDataProvider {
-    _apiCallback = null;
-    total = 0;
-    items = [];
-    _r = 0;
-    _defaultParams = {};
+    private apiCallback = null;
+    private total = 0;
+    private items = [];
+    private _r = 0;
+    private defaultParams = {};
 
     getApiCallback() {
-        return this._apiCallback;
+        return this.apiCallback;
     }
 
     setApiCallback(value) {
-        this._apiCallback = value;
+        this.apiCallback = value;
     }
 
     setDefaultParams(defaultParams) {
-        this._defaultParams = defaultParams;
+        this.defaultParams = defaultParams;
     }
 
     getDefaultParams() {
-        return this._defaultParams;
+        return this.defaultParams;
     }
 
     setItems(items) {
@@ -56,10 +56,10 @@ export default class ApiDataProvider extends AbstractDataProvider {
         let defaults = {
             limit: this.getPerPage(),
             page: this.getActivePage(),
-            ...this._defaultParams
+            ...this.defaultParams
         };
 
-        this._apiCallback({
+        this.apiCallback({
             ...defaults,
             ...this.getSearchParams(),
             ...params

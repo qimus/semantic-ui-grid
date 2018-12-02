@@ -37,18 +37,23 @@ const columns = [
         sortable: true
     },
     {
-        title: 'Name',
-        field: 'name',
+        title: 'First Name',
+        field: 'first_name',
         sortable: true
     },
     {
-        title: 'City',
-        field: 'city',
+        title: 'Last Name',
+        field: 'last_name',
+        sortable: true
+    },
+    {
+        title: 'E-mail',
+        field: 'email',
         sortable: true,
     },
     {
-        title: 'Age',
-        field: 'age',
+        title: 'Country',
+        field: 'country',
         sortable: true
     },
     {
@@ -75,14 +80,24 @@ const filter = {
     name: 'users_filter',
     items: [
         {
-            name: 'name',
+            name: 'first_name',
             type: 'text',
-            label: 'Name'
+            label: 'First Name'
         },
         {
-            name: 'city',
+            name: 'last_name',
             type: 'text',
-            label: 'City'
+            label: 'Last Name'
+        },
+        {
+            name: 'email',
+            type: 'text',
+            label: 'Email'
+        },
+        {
+            name: 'country',
+            type: 'text',
+            label: 'Country'
         }
     ]
 };
@@ -94,14 +109,15 @@ class DemoGrid extends Component {
     componentDidMount() {
         updateCallback = () => {
             this.setState({r: Math.random()})
-        }
+        };
     }
 
     render() {
         return (
             <Grid>
                 <Grid.Row>
-                    <Grid.Column width={16}>
+                    <Grid.Column width={1}></Grid.Column>
+                    <Grid.Column width={14}>
                         <Header as={'h2'}>Semantic ui grid example</Header>
                         <Button floated='right' primary onClick={() => this.props.history.push('/users/new')}>Create</Button>
                         <ExtTable
@@ -133,18 +149,20 @@ const connectUser = (WrappedComponent) => {
 @connectUser
 class EditItem extends Component {
     state = {
-        name: '',
-        age: '',
-        city: ''
+        first_name: '',
+        last_name: '',
+        email: '',
+        country: ''
     };
 
     componentDidMount() {
         const { user } = this.props;
         if (user) {
             this.setState({
-                name: user.name,
-                age: user.age,
-                city: user.city
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email,
+                country: user.country
             });
         }
     }
@@ -172,9 +190,10 @@ class EditItem extends Component {
                     <Grid.Column width={2}></Grid.Column>
                     <Grid.Column width={12}>
                         <Form>
-                            <Form.Field label='Name' control={Input} placeholder='Name' value={this.state.name} onChange={this.handleChange.bind(this, 'name')}/>
-                            <Form.Field label='Age' control={Input} placeholder='Age' value={this.state.age} onChange={this.handleChange.bind(this, 'age')}/>
-                            <Form.Field label='City' control={Input} placeholder='City' value={this.state.city} onChange={this.handleChange.bind(this, 'city')}/>
+                            <Form.Field label='First Name' control={Input} placeholder='First Name' value={this.state.first_name} onChange={this.handleChange.bind(this, 'first_name')}/>
+                            <Form.Field label='Last Name' control={Input} placeholder='Last Name' value={this.state.last_name} onChange={this.handleChange.bind(this, 'last_name')}/>
+                            <Form.Field label='Email' control={Input} placeholder='Email' value={this.state.email} onChange={this.handleChange.bind(this, 'email')}/>
+                            <Form.Field label='Country' control={Input} placeholder='Country' value={this.state.country} onChange={this.handleChange.bind(this, 'country')}/>
                             <Button primary onClick={this.saveRecord}>Save</Button>
                             <Button secondary onClick={() => {this.props.history.goBack()}}>Back</Button>
                         </Form>

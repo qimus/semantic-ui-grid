@@ -1,29 +1,4 @@
-const data = [
-    {
-        id: 1,
-        name: 'John',
-        age: 36,
-        city: 'New York'
-    },
-    {
-        id: 2,
-        name: 'Denis',
-        age: 18,
-        city: 'Moscow'
-    },
-    {
-        id: 3 ,
-        name: 'Artur',
-        age: 30,
-        city: 'Astana'
-    },
-    {
-        id: 4 ,
-        name: 'Valera',
-        age: 33,
-        city: 'Astana'
-    },
-];
+const data = require('./data/people.json');
 
 class Store {
     maxInd = 4;

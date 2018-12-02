@@ -5,6 +5,7 @@ import {
     Form,
     Icon
 } from 'semantic-ui-react'
+import i18n from '../../i18n'
 
 import { RequestInterface } from '../../types'
 
@@ -28,8 +29,8 @@ interface SuggestProps {
 export default class Suggest extends React.Component<SuggestProps & WrappedFieldProps & Field, {}> {
     static defaultProps = {
         minLength: 2,
-        noResultsMessage: 'По вашему запросу ничего не найдено',
-        prompt: 'Выберите значение...'
+        noResultsMessage: i18n.getMessage('suggest.noResultMessage', 'По вашему запросу ничего не найдено'),
+        prompt: i18n.getMessage('suggest.prompt', 'Выберите значение...')
     };
 
     state = {

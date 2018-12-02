@@ -53,7 +53,7 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
     }
 
     /**
-     * Обработчик пагинации
+     * Pagination handler
      * @param {Event} e
      * @param {Number} activePage
      */
@@ -66,13 +66,11 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
     };
 
     /**
-     * Обработчик фильтрации списка таблицы
+     * Data filter handler
      * @param {Object} values
-     * @param {Array} fieldNames список возможных имен полей фильтра,
-     * нужен для удаления из строки состояния лишнего
+     * @param {Array} fieldNames list of possible filter field names
      */
     handleFilter = (values, fieldNames) => {
-        //добавляем в search строки браузера значения фильтра для сохранения состояния
         this.props.provider._navigate({ [this.props.filterNamePrefix]: values }, (search) => {
             fieldNames.forEach(fieldName => {
                 if (search[this.props.filterNamePrefix]) {
@@ -83,7 +81,7 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
             return search;
         });
 
-        this.props.provider.fetch(); //делаем запрос
+        this.props.provider.fetch(); //do request
     };
 
     render() {

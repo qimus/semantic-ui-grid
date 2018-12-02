@@ -2,6 +2,7 @@ import * as React from 'react'
 import {
     Confirm
 } from 'semantic-ui-react'
+import i18n from '../../i18n'
 
 interface ConfirmDialogProps {
     open: boolean;
@@ -15,10 +16,10 @@ interface ConfirmDialogProps {
 
 class ConfirmDialog extends React.Component<ConfirmDialogProps, {}> {
     static defaultProps = {
-        header: 'Подтверждение',
-        content: 'Вы уверены что хотите совершить данное действие?',
-        cancelButtonTitle: 'Нет',
-        confirmButtonTitle: 'Да'
+        header: i18n.getMessage('confirm_dialog.confirm_header', 'Подтверждение'),
+        content: i18n.getMessage('confirm_dialog.message', 'Вы уверены что хотите совершить данное действие?'),
+        cancelButtonTitle: i18n.getMessage('confirm_dialog.no', 'Нет'),
+        confirmButtonTitle: i18n.getMessage('confirm_dialog.yes', 'Да')
     };
 
     state = {

@@ -32,3 +32,7 @@ export const sortToString = (sort: any) => {
 
     return result.join(',');
 };
+
+export const isNumeric = (val) => {
+    return !isNaN(parseFloat(val)) && isFinite(val);
+};

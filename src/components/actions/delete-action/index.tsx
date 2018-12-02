@@ -15,11 +15,6 @@ interface DeleteActionProps {
 }
 
 export default class DeleteAction extends React.Component<DeleteActionProps, {}> {
-    static defaultProps = {
-        header: 'Удаление записи',
-        message: 'Вы уверены что хотите совершить данное действие?'
-    };
-
     state = {
         open: false
     };

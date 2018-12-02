@@ -18,6 +18,9 @@ export type ProviderSettings = {
     pageLimits?: number[]
 };
 
+/**
+ * Class AbstractProvider
+ */
 export default abstract class AbstractProvider {
     private pageParam = 'page';
 
@@ -65,7 +68,7 @@ export default abstract class AbstractProvider {
     abstract getTotalCount(): number;
 
     /**
-     * Возвращает сквозной номер строки
+     * Return serial number
      * @return {number}
      */
     getStartIndex() {
@@ -73,7 +76,7 @@ export default abstract class AbstractProvider {
     }
 
     /**
-     * Возвращает всего количество страниц
+     * Return total count of pages
      * @return {number}
      */
     getTotalPages() {
@@ -81,20 +84,20 @@ export default abstract class AbstractProvider {
     }
 
     /**
-     * Возвращает массив данных для вывода на странице
+     * Return items to show on page
      * @return {array}
      */
     abstract getItems();
 
     /**
-     * Обновить данные
+     * Update items on the page
      * @param params
      * @private
      */
     abstract fetch(params?: any): void;
 
     /**
-     * Возвращает номер активной страницы
+     * Return number active page
      * @return {number}
      */
     getActivePage() {
@@ -107,7 +110,7 @@ export default abstract class AbstractProvider {
     }
 
     /**
-     * Установить номер активной страницы
+     * Set active page number
      * @param page
      * @return {AbstractProvider}
      */
@@ -117,7 +120,7 @@ export default abstract class AbstractProvider {
     }
 
     /**
-     * Количество строк, которые выводятся на странице
+     * Count rows to be showed on the page
      * @return {number}
      */
     getPerPage() {
@@ -134,7 +137,7 @@ export default abstract class AbstractProvider {
     }
 
     /**
-     *
+     * Change rows count on the page
      * @param perPage
      * @return {AbstractProvider}
      */
@@ -148,7 +151,7 @@ export default abstract class AbstractProvider {
     }
 
     /**
-     * Возвращает search параметры в виде объекта
+     * Return search params as Object
      * @returns {Object}
      */
     getSearchParams() {
@@ -162,7 +165,7 @@ export default abstract class AbstractProvider {
     }
 
     /**
-     * Возвращает параметр из строки поиска браузера
+     * Return search param by name
      * @param paramName
      * @param defaultValue
      * @returns {boolean|*}
@@ -174,7 +177,7 @@ export default abstract class AbstractProvider {
     }
 
     /**
-     * Возвращает объект с параметрами сортировки
+     * Return sort object
      * @return {Object}
      */
     getSort() {
@@ -203,7 +206,7 @@ export default abstract class AbstractProvider {
     }
 
     /**
-     * Установить сортировку по полю
+     * Set sorting by field
      * @param {String} field
      * @param {String} direction
      */
@@ -221,7 +224,7 @@ export default abstract class AbstractProvider {
     }
 
     /**
-     * Изменение строки поиска
+     * To store searching params in browser search
      * @param {Object} params список параметров, который будет добавлен в search строку браузера
      * @param {Function} callback функция обработки текущих search параметров, можно использовать для фильтрации
      * @private
