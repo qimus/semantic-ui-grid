@@ -1,9 +1,9 @@
 Installation
 -----------
 
-npm i --save semantic-grid
+**npm i --save semantic-data-grid**
 
-Example: cd example/ && npm i && npm start. Enjoy!
+Example: **cd example/ && npm i && npm start. Enjoy!**
 
 Hot it use
 ----------
