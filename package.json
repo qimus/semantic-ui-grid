@@ -1,14 +1,14 @@
 {
   "name": "semantic-grid",
   "version": "1.0.0",
-  "description": "Extended grid for semantic ui",
+  "description": "Extended data grid for semantic ui",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:js": "npx babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
     "copy": " cp -r lib/* example/node_modules/semantic-grid/lib/"
   },
-  "author": "",
+  "author": "Denis Dyadyun",
   "license": "ISC",
   "dependencies": {
     "@types/react": "^16.7.6",
