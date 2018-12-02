@@ -125,6 +125,6 @@ Screenshots
 ----------
 ![Grid overview](public/1.png)
 
-![Sort](public/1.png)
+![Sort](public/2.png)
 
-![Filter](public/1.png)
+![Filter](public/3.png)
