@@ -41,8 +41,15 @@ export default class TableHeader extends React.Component<TableHeaderProps, {}> {
                         if (item.field && sort[item.field]) {
                             fieldSort = sort[item.field];
                         }
+                        
+                        let HeaderComponent;
+                        if (item.header) {
+                            HeaderComponent = item.header;
+                        } else {
+                            HeaderComponent = HeaderCell;
+                        }
 
-                        return <HeaderCell item={item} key={i} provider={provider} sort={fieldSort}/>
+                        return <HeaderComponent item={item} key={i} provider={provider} sort={fieldSort}/>
                     })}
                 </Table.Row>
             </Table.Header>

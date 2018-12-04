@@ -27,7 +27,8 @@ import {
 import {
     ACTION_COLUMN,
     SERIAL_COLUMN,
-    SIMPLE_COLUMN
+    SIMPLE_COLUMN,
+    CHECKBOX_COLUMN
 } from './components/columns'
 
 const Action = {
@@ -44,7 +45,8 @@ const Provider = {
 const Column = {
     ACTION_COLUMN,
     SIMPLE_COLUMN,
-    SERIAL_COLUMN
+    SERIAL_COLUMN,
+    CHECKBOX_COLUMN
 };
 
 export {

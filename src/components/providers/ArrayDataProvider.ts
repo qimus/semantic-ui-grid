@@ -99,7 +99,7 @@ export default class ArrayDataProvider extends AbstractProvider {
             this.sortItems(params.sort);
         }
         const filter = this.getSearchParam(this.filterParamName);
-        if (Object.keys(filter).length > 0) {
+        if (filter && Object.keys(filter).length > 0) {
             this.filterItems(filter);
         }
     }

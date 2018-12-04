@@ -7,6 +7,8 @@ export interface Column {
     type?: string;
     field?: string;
     sortable?: boolean;
+    component: object,
+    header: object;
     actions: ColumnAction[],
     value?: any;
 }

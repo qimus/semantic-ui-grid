@@ -34,7 +34,12 @@ export default class TableBody extends React.Component<TableBodyProps, {}> {
                             columnValue = item[field] || '';
                         }
 
-                        let Column = columnFactory(type);
+                        let Column;
+                        if (column.component) {
+                            Column = column.component;
+                        } else {
+                            Column = columnFactory(type);
+                        }
 
                         return <Column { ...column }
                                        value={columnValue}
