@@ -61,7 +61,7 @@ const columns = [
         type: Column.ACTION_COLUMN,
         actions: [
             {
-                component: Action.EditAction,
+                component: Action.LinkAction,
                 link: (row) => `/users/${row.id}`
             },
             {

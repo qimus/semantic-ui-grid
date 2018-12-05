@@ -21,7 +21,7 @@ const setHistory = (newHistory) => history = newHistory;
 
 import {
     DeleteAction,
-    EditAction
+    LinkAction
 } from './components/actions'
 
 import {
@@ -33,7 +33,7 @@ import {
 
 const Action = {
     DeleteAction,
-    EditAction
+    LinkAction
 };
 
 const Provider = {

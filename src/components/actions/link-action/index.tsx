@@ -4,14 +4,15 @@ import {
 } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-interface EditActionProps {
+interface LinkActionProps {
     link(row: any): void;
     row: any;
+    icon?: string
 }
 
-export default class EditAction extends React.Component<EditActionProps, {}> {
+export default class LinkAction extends React.Component<LinkActionProps, {}> {
     render() {
-        const { link, row } = this.props;
+        const { link, row, icon = 'edit' } = this.props;
         let href;
 
         if (typeof link === 'function') {
@@ -23,7 +24,7 @@ export default class EditAction extends React.Component<EditActionProps, {}> {
         return (
             <Button
                 as={Link}
-                icon={'edit'}
+                icon={icon}
                 positive
                 size={'small'}
                 to={href}/>

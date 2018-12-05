@@ -12,12 +12,20 @@ interface ActionColumnProps {
 
 export default class ActionColumn extends React.Component<ActionColumnProps, {}> {
     render() {
-        const { actions = [], ...props } = this.props;
+        const { actions = [], row, ...props } = this.props;
 
         return (
             <Table.Cell textAlign={'center'}>
                 {actions.map((item, i) => {
-                    const { component: Component, ...rest } = item;
+                    const { component: Component, visible, ...rest } = item;
+
+                    if (typeof visible !== 'undefined') {
+                        let isVisible = (typeof visible === 'function') ? visible(row) : visible;
+                        if (!isVisible) {
+                            return null;
+                        }
+                    }
+
                     return <Component key={i} {...props} {...rest}/>
                 })}
             </Table.Cell>
