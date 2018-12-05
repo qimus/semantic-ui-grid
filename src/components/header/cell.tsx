@@ -57,6 +57,7 @@ export default class HeaderCell extends React.Component<HeaderCellProps, {}> {
 
         return (
             <Table.HeaderCell
+                {...(item.headerOptions || {})}
                 sorted={sorted}
                 onClick={this.handleSort}
             >{item.title || ''}{item.field && this.getSortPositionNumber(item.field)}</Table.HeaderCell>

@@ -12,7 +12,7 @@ interface ActionColumnProps {
 
 export default class ActionColumn extends React.Component<ActionColumnProps, {}> {
     render() {
-        const { actions = [], row, ...props } = this.props;
+        const { actions = [], ...props } = this.props;
 
         return (
             <Table.Cell textAlign={'center'}>
@@ -20,7 +20,7 @@ export default class ActionColumn extends React.Component<ActionColumnProps, {}>
                     const { component: Component, visible, ...rest } = item;
 
                     if (typeof visible !== 'undefined') {
-                        let isVisible = (typeof visible === 'function') ? visible(row) : visible;
+                        let isVisible = (typeof visible === 'function') ? visible(props.row) : visible;
                         if (!isVisible) {
                             return null;
                         }

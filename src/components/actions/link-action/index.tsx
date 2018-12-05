@@ -11,8 +11,12 @@ interface LinkActionProps {
 }
 
 export default class LinkAction extends React.Component<LinkActionProps, {}> {
+    static defaultProps = {
+        icon: 'edit'
+    };
+
     render() {
-        const { link, row, icon = 'edit' } = this.props;
+        const { link, row, ...rest } = this.props;
         let href;
 
         if (typeof link === 'function') {
@@ -24,10 +28,8 @@ export default class LinkAction extends React.Component<LinkActionProps, {}> {
         return (
             <Button
                 as={Link}
-                icon={icon}
-                positive
-                size={'small'}
-                to={href}/>
+                to={href}
+                {...rest}/>
         )
     }
 }

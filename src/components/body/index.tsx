@@ -11,11 +11,12 @@ interface TableBodyProps {
     provider: AbstractProvider;
     columns: Column[],
     activePage: number;
+    rowOptions: { [prop: string]: any };
 }
 
 export default class TableBody extends React.Component<TableBodyProps, {}> {
     render() {
-        const { provider, columns } = this.props;
+        const { provider, columns, rowOptions = {} } = this.props;
 
         return (
             <Table.Body>
@@ -49,7 +50,16 @@ export default class TableBody extends React.Component<TableBodyProps, {}> {
                                        key={`${provider.getActivePage()}.${i}.${j}`}/>
                     });
 
-                    return <Table.Row key={i}>{items}</Table.Row>
+                    let currentRowOptions = {};
+                    for (let key in rowOptions) {
+                        let optionValue = rowOptions[key];
+                        if (typeof optionValue === 'function') {
+                            optionValue = optionValue(item);
+                        }
+                        currentRowOptions[key] = optionValue;
+                    }
+
+                    return <Table.Row key={i} { ...currentRowOptions }>{items}</Table.Row>
                 })}
             </Table.Body>
         )
