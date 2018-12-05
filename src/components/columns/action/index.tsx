@@ -8,14 +8,15 @@ import { ColumnAction } from '../../types'
 interface ActionColumnProps {
     actions: ColumnAction[],
     row: any;
+    columnOptions: { [prop: string]: any };
 }
 
 export default class ActionColumn extends React.Component<ActionColumnProps, {}> {
     render() {
-        const { actions = [], ...props } = this.props;
+        const { actions = [], columnOptions = {}, ...props } = this.props;
 
         return (
-            <Table.Cell textAlign={'center'}>
+            <Table.Cell textAlign={'center'} {...columnOptions}>
                 {actions.map((item, i) => {
                     const { component: Component, visible, ...rest } = item;
 

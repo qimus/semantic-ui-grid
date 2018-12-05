@@ -5,9 +5,9 @@ import {
 
 import AbstractProvider from '../../providers/AbstractProvider'
 
-const SerialColumn = (props: { numRow: number, provider: AbstractProvider }) => {
+const SerialColumn = (props: { numRow: number, provider: AbstractProvider, columnOptions: { [prop: string]: any } }) => {
     return (
-        <Table.Cell>{props.provider.getStartIndex() + props.numRow + 1}</Table.Cell>
+        <Table.Cell {...(props.columnOptions || {})}>{props.provider.getStartIndex() + props.numRow + 1}</Table.Cell>
     )
 };
 

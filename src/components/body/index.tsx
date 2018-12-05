@@ -42,12 +42,13 @@ export default class TableBody extends React.Component<TableBodyProps, {}> {
                             Column = columnFactory(type);
                         }
 
-                        return <Column { ...column }
-                                       value={columnValue}
-                                       row={item}
-                                       provider={provider}
-                                       numRow={i}
-                                       key={`${provider.getActivePage()}.${i}.${j}`}/>
+                        return <Column 
+                                    { ...column }
+                                    value={columnValue}
+                                    row={item}
+                                    provider={provider}
+                                    numRow={i}
+                                    key={`${provider.getActivePage()}.${i}.${j}`}/>
                     });
 
                     let currentRowOptions = {};
