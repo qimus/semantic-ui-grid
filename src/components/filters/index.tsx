@@ -50,7 +50,7 @@ class Filter extends React.Component<FilterProps, {}> {
                 <Grid>
                     <Grid.Row>
                         {items.map((item, i) => {
-                            const { type, component, filterOptions = {}, ...props } = item;
+                            const { type, component, filterOptions = {}, updateAfterChange = false, ...props } = item;
                             let Component;
 
                             if (component) {
@@ -59,11 +59,14 @@ class Filter extends React.Component<FilterProps, {}> {
                                 Component = factory(type);
                             }
 
+                            if (updateAfterChange) {
+                                props.handleChange = handleSubmit(this.handleSearch);
+                            }
+
                             return (
                                 <Grid.Column key={i} width={3} {...filterOptions}>
                                     <Field
                                         key={i}
-                                        handleChange={handleSubmit(this.handleSearch)}
                                         {...props}
                                         component={Component} />
                                 </Grid.Column>

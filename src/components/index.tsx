@@ -26,6 +26,7 @@ export interface ExtTableProps {
     isFetching: boolean;
     filterNamePrefix: string;
     rowOptions: { [ prop: string ]: any;}
+    emptyMessage: any;
 }
 
 export default class ExtTable extends React.Component<ExtTableProps, {}> {
@@ -72,7 +73,7 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
      * @param {Array} fieldNames list of possible filter field names
      */
     handleFilter = (values, fieldNames) => {
-        this.props.provider._navigate({ [this.props.filterNamePrefix]: values }, (search) => {
+        this.props.provider._navigate({ [this.props.filterNamePrefix]: values, page: 1 }, (search) => {
             fieldNames.forEach(fieldName => {
                 if (search[this.props.filterNamePrefix]) {
                     delete search[this.props.filterNamePrefix][fieldName];
@@ -86,7 +87,7 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
     };
 
     render() {
-        const { columns, header, provider, sortable, isFetching, rowOptions } = this.props;
+        const { columns, header, provider, sortable, isFetching, rowOptions, emptyMessage } = this.props;
 
         return (
             <React.Fragment>
@@ -104,6 +105,7 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
                         provider={provider}
                         header={header}/>
                     <TableBody
+                        emptyMessage={emptyMessage}
                         rowOptions={rowOptions}
                         provider={provider}
                         columns={columns}

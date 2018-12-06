@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {
-    Table
+    Table,
+    Message
 } from 'semantic-ui-react'
 
 import columnFactory from '../columns'
@@ -12,15 +13,29 @@ interface TableBodyProps {
     columns: Column[],
     activePage: number;
     rowOptions: { [prop: string]: any };
+    emptyMessage: any;
 }
 
 export default class TableBody extends React.Component<TableBodyProps, {}> {
     render() {
-        const { provider, columns, rowOptions = {} } = this.props;
+        const { provider, columns, emptyMessage, rowOptions = {} } = this.props;
+        const items = provider.getItems();
+
+        if (items.length === 0) {
+            return (
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell colSpan={columns.length} textAlign={'center'}>
+                            {emptyMessage}
+                        </Table.Cell>
+                    </Table.Row>
+                </Table.Body>
+            )
+        }
 
         return (
             <Table.Body>
-                {provider.getItems().map((item, i) => {
+                {items.map((item, i) => {
                     let items = columns.map((column, j) => {
                         const { type, field, value } = column;
                         let columnValue;
