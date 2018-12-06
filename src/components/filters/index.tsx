@@ -50,14 +50,23 @@ class Filter extends React.Component<FilterProps, {}> {
                 <Grid>
                     <Grid.Row>
                         {items.map((item, i) => {
-                            const { type, ...props } = item;
-                            let Component = factory(type),
-                                name = item.name;
+                            const { type, component, filterOptions = {}, ...props } = item;
+                            let Component;
+
+                            if (component) {
+                                Component = component;
+                            } else {
+                                Component = factory(type);
+                            }
 
                             return (
-                                <div style={styles.item} key={i}>
-                                    <Field key={i} {...props} component={Component} name={name}/>
-                                </div>
+                                <Grid.Column key={i} width={3} {...filterOptions}>
+                                    <Field
+                                        key={i}
+                                        handleChange={handleSubmit(this.handleSearch)}
+                                        {...props}
+                                        component={Component} />
+                                </Grid.Column>
                             )
                         })}
                         <Grid.Column verticalAlign={'bottom'} style={styles.button}>
