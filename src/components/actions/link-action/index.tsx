@@ -17,7 +17,7 @@ export default class LinkAction extends React.Component<LinkActionProps, {}> {
     };
 
     render() {
-        const { link, row, options } = this.props;
+        const { link, row, icon, options = {} } = this.props;
         let href;
 
         if (typeof link === 'function') {
@@ -30,6 +30,7 @@ export default class LinkAction extends React.Component<LinkActionProps, {}> {
             <Button
                 as={Link}
                 to={href}
+                icon={icon}
                 {...options}/>
         )
     }
