@@ -12,9 +12,15 @@ interface DeleteActionProps {
     dispatch(): {};
     header?: string;
     content: string;
+    icon: string;
+    options: { [prop: string]: any }
 }
 
 export default class DeleteAction extends React.Component<DeleteActionProps, {}> {
+    static defaultProps = {
+        icon: 'delete'
+    };
+
     state = {
         open: false
     };
@@ -34,7 +40,7 @@ export default class DeleteAction extends React.Component<DeleteActionProps, {}>
     };
 
     render() {
-        const { header, content } = this.props;
+        const { header, content, icon, options = {} } = this.props;
 
         return (
             <span>
@@ -45,9 +51,10 @@ export default class DeleteAction extends React.Component<DeleteActionProps, {}>
                     content={content}
                     closeCallback={this.handleCloseModal}/>
                 <Button
-                    icon={'delete'}
+                    icon={icon}
                     color={'red'}
                     size={'small'}
+                    {...options}
                     onClick={this.handleShowModal} />
             </span>
         )
