@@ -54,7 +54,7 @@ export default class DeleteAction extends React.Component<DeleteActionProps, {}>
                     icon={icon}
                     color={'red'}
                     size={'small'}
-                    {...options}
+                    { ...options }
                     onClick={this.handleShowModal} />
             </span>
         )
