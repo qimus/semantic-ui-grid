@@ -1,6 +1,6 @@
 {
   "name": "semantic-data-grid",
-  "version": "1.0.15",
+  "version": "1.0.19",
   "description": "Extended data grid for semantic ui",
   "main": "lib/index.js",
   "scripts": {
