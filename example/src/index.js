@@ -62,7 +62,10 @@ const columns = [
         actions: [
             {
                 component: Action.LinkAction,
-                link: (row) => `/users/${row.id}`
+                link: (row) => `/users/${row.id}`,
+                options: {
+                    color: 'green'
+                }
             },
             {
                 component: Action.DeleteAction,
@@ -108,7 +111,7 @@ let updateCallback;
 class DemoGrid extends Component {
     componentDidMount() {
         updateCallback = () => {
-            this.setState({r: Math.random()})
+            this.setState({ r: Math.random() })
         };
     }
 
@@ -116,10 +119,14 @@ class DemoGrid extends Component {
         return (
             <Grid>
                 <Grid.Row>
+                    <Grid.Column width={15} textAlign={'center'}>
+                        <Header as={'h2'}>Semantic ui grid example</Header>
+                        <Button floated={'right'} primary onClick={() => this.props.history.push('/users/new')}>Create</Button>
+                    </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
                     <Grid.Column width={1}></Grid.Column>
                     <Grid.Column width={14}>
-                        <Header as={'h2'}>Semantic ui grid example</Header>
-                        <Button floated='right' primary onClick={() => this.props.history.push('/users/new')}>Create</Button>
                         <ExtTable
                             filter={filter}
                             sortable={true}

@@ -2,11 +2,14 @@
   "name": "example",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://qimus.github.io/semantic-ui-grid",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./server.js",
-    "build:prod": "npx webpack --env=production --config=webpack.config.js --progress --profile --colors"
+    "build:prod": "npx webpack --env=production --config=webpack.prod.config.js --progress --profile --colors",
+    "predeploy": "npm run build:prod",
+    "deploy": "gh-pages -d public"
   },
   "author": "",
   "license": "ISC",
@@ -29,6 +32,7 @@
     "express": "^4.16.4",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^2.0.0",
+    "gh-pages": "^2.0.1",
     "path": "^0.12.7",
     "react-hot-loader": "^4.3.12",
     "sass-loader": "^7.1.0",
