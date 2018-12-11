@@ -25,7 +25,7 @@ import 'semantic-ui-css/semantic.min.css'
 
 import store from './store'
 
-const history = createBrowserHistory({ basename: '' });
+const history = createBrowserHistory({ basename: process.env.BASE_URL });
 setHistory(history);
 
 const provider = new DataProvider.ArrayDataProvider({ data: store.getItems() });

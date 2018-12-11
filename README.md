@@ -5,6 +5,8 @@ Installation
 
 Example: **cd example/ && npm i && npm start. Enjoy!**
 
+[Live demo](https://qimus.github.io/semantic-ui-grid/)
+
 Hot it use
 ----------
 
@@ -130,6 +132,7 @@ ExtTable props
 
 Column props
 -----
+
 |Prop|Type|Description|
 |----|----|-----------|
 |columnOptions|Object|Any props from Table.Cell Semantic ui|
@@ -140,6 +143,7 @@ Column props
 
 Filter props
 -----------
+
 |Prop|Type|Description|
 |----|----|-----------|
 |type|string|One of type which was registered with *registerFilterTypes* function|

@@ -5,8 +5,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const extractSass = new ExtractTextPlugin('[name].bundle.css');
 
 module.exports = {
-    mode: "development",
-    devtool: "source-map",
+    mode: "production",
     entry: {
         app: [
             './src/index.js'
@@ -15,13 +14,15 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'public'),
         filename: '[name].bundle.js',
-        publicPath: '/'
+        publicPath: '/semantic-ui-grid/'
     },
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.NamedModulesPlugin(),
+        new webpack.DefinePlugin({
+            'process.env.BASE_URL': JSON.stringify('semantic-ui-grid'),
+        }),
         extractSass
     ],
     resolve: {
