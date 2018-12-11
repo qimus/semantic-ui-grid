@@ -128,6 +128,25 @@ ExtTable props
 |isFetching|Bool| Indicate to show loader|
 |filterNamePrefix|String|Prefix for filter params in search of browser|
 
+Column props
+-----
+|Prop|Type|Description|
+|----|----|-----------|
+|columnOptions|Object|Any props from Table.Cell Semantic ui|
+|component|React.Component|Custom component for render cell|
+|type|string|One of type which was registered with *registerColumnTypes* function|
+|value|any||
+|field|string|Name of the field that value will be show|
+
+Filter props
+-----------
+|Prop|Type|Description|
+|----|----|-----------|
+|type|string|One of type which was registered with *registerFilterTypes* function|
+|component|React.Component|Custom component|
+|updateAfterChange|bool|After each change fetch data|
+|options|object|Props for Grid.Column|
+
 Custom types
 ------------
 You can define custom types of columns and filters.

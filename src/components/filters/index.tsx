@@ -8,6 +8,7 @@ import {
 } from 'semantic-ui-react'
 
 import { factory } from './factory'
+import { ColumnOptions } from '../types'
 
 const styles = {
     form: {
@@ -27,6 +28,7 @@ interface FilterProps {
     handleSubmit: (values) => any;
     itemsNames: any[];
     filterNamePrefix: string;
+    options: ColumnOptions;
 }
 
 class Filter extends React.Component<FilterProps, {}> {
@@ -50,7 +52,7 @@ class Filter extends React.Component<FilterProps, {}> {
                 <Grid>
                     <Grid.Row>
                         {items.map((item, i) => {
-                            const { type, component, filterOptions = {}, updateAfterChange = false, ...props } = item;
+                            const { type, component, options = {}, updateAfterChange = false, ...props } = item;
                             let Component;
 
                             if (component) {
@@ -64,7 +66,7 @@ class Filter extends React.Component<FilterProps, {}> {
                             }
 
                             return (
-                                <Grid.Column key={i} width={3} {...filterOptions}>
+                                <Grid.Column key={i} width={3} {...options}>
                                     <Field
                                         key={i}
                                         {...props}

@@ -44,6 +44,10 @@
     "typescript": "^3.1.6"
   },
   "keywords": [
-    "react", "semantic-ui", "grid", "data-grid", "table"
+    "react",
+    "semantic-ui",
+    "grid",
+    "data-grid",
+    "table"
   ]
 }

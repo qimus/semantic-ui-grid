@@ -3,12 +3,15 @@ import {
     Table
 } from 'semantic-ui-react'
 
-import { ColumnAction } from '../../types'
+import {
+    ColumnAction,
+    ColumnOptions
+} from '../../types'
 
 interface ActionColumnProps {
     actions: ColumnAction[],
     row: any;
-    columnOptions: { [prop: string]: any };
+    columnOptions: ColumnOptions;
 }
 
 export default class ActionColumn extends React.Component<ActionColumnProps, {}> {

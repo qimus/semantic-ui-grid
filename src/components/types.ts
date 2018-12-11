@@ -38,3 +38,7 @@ export interface SearchParams {
     sort?: object,
     [prop: string]: any
 }
+
+export interface ColumnOptions {
+    [prop: string]: any
+}

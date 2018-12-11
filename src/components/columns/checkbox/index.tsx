@@ -3,11 +3,13 @@ import {
     Checkbox,
     Table
 } from 'semantic-ui-react'
+import { ColumnOptions } from '../../types'
 
 interface CheckboxColumnProps {
-    value: boolean,
-    handleChange: (isChecked: boolean, item: any) => void,
-    row: object
+    value: boolean;
+    handleChange: (isChecked: boolean, item: any) => void;
+    row: object;
+    columnOptions: ColumnOptions;
 }
 
 export default class CheckboxColumn extends React.Component<CheckboxColumnProps, {}> {
@@ -27,9 +29,10 @@ export default class CheckboxColumn extends React.Component<CheckboxColumnProps,
     };
     
     render() {
+        const { columnOptions } = this.props;
 
         return (
-            <Table.Cell textAlign={'center'}>
+            <Table.Cell textAlign={'center'} { ...columnOptions }>
                 <Checkbox
                     checked={this.state.value}
                     onChange={this.handleChange}/>
