@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
+import { get } from 'lodash'
 import {
     Grid,
     Form,
@@ -29,11 +30,19 @@ interface FilterProps {
     itemsNames: any[];
     filterNamePrefix: string;
     options: ColumnOptions;
+    filterButton?: {
+        icon: string;
+        visible: boolean;
+    }
 }
 
 class Filter extends React.Component<FilterProps, {}> {
     static defaultProps = {
-        filterNamePrefix: 'filter'
+        filterNamePrefix: 'filter',
+        filterButton: {
+            icon: 'filter',
+            visible: true
+        }
     };
 
     handleSearch = (values) => {
@@ -45,7 +54,7 @@ class Filter extends React.Component<FilterProps, {}> {
     }
 
     render() {
-        const { items, handleSubmit } = this.props;
+        const { items, handleSubmit, filterButton } = this.props;
 
         return (
             <Form onSubmit={handleSubmit(this.handleSearch)} style={styles.form}>
@@ -74,9 +83,11 @@ class Filter extends React.Component<FilterProps, {}> {
                                 </Grid.Column>
                             )
                         })}
-                        <Grid.Column verticalAlign={'bottom'} style={styles.button}>
-                            <Button primary icon={'filter'}/>
-                        </Grid.Column>
+                        {filterButton.visible && (
+                            <Grid.Column verticalAlign={'bottom'} style={styles.button}>
+                                <Button primary icon={get(filterButton, 'icon', 'filter')}/>
+                            </Grid.Column>
+                        )}
                     </Grid.Row>
                 </Grid>
             </Form>
