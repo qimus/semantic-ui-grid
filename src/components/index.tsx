@@ -45,8 +45,7 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
         if (this.props.filter && !this.filter) {
             const { filter, provider } = this.props;
             this.filter = createFilterForm({
-                name: filter.name,
-                items: filter.items,
+                ...filter,
                 handleFilter: this.handleFilter,
                 initialValues: provider.getSearchParam(this.props.filterNamePrefix, {}),
                 filterNamePrefix: this.props.filterNamePrefix
