@@ -15,13 +15,6 @@ interface ConfirmDialogProps {
 }
 
 class ConfirmDialog extends React.Component<ConfirmDialogProps, {}> {
-    static defaultProps = {
-        header: i18n.getMessage('confirm_dialog.confirm_header', 'Подтверждение'),
-        content: i18n.getMessage('confirm_dialog.message', 'Вы уверены что хотите совершить данное действие?'),
-        cancelButtonTitle: i18n.getMessage('confirm_dialog.no', 'Нет'),
-        confirmButtonTitle: i18n.getMessage('confirm_dialog.yes', 'Да')
-    };
-
     state = {
         open: this.props.open || false
     };
@@ -57,12 +50,12 @@ class ConfirmDialog extends React.Component<ConfirmDialogProps, {}> {
         return (
             <Confirm
                 open={open}
-                header={header}
-                content={content}
+                header={header || i18n.getMessage('confirm_dialog.confirm_header', 'Confirm')}
+                content={content || i18n.getMessage('confirm_dialog.message', 'Are you sure?')}
                 onCancel={this.handleClose}
                 onConfirm={this.handleConfirm}
-                cancelButton={cancelButtonTitle}
-                confirmButton={confirmButtonTitle}
+                cancelButton={cancelButtonTitle || i18n.getMessage('confirm_dialog.no', 'Yes')}
+                confirmButton={confirmButtonTitle || i18n.getMessage('confirm_dialog.yes', 'No')}
             />
         )
     }
