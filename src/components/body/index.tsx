@@ -14,11 +14,12 @@ interface TableBodyProps {
     activePage: number;
     rowOptions: { [prop: string]: any };
     emptyMessage: any;
+    extra: { [prop: string]: any };
 }
 
 export default class TableBody extends React.Component<TableBodyProps, {}> {
     render() {
-        const { provider, columns, emptyMessage, rowOptions = {} } = this.props;
+        const { provider, columns, emptyMessage, rowOptions = {}, extra } = this.props;
         const items = provider.getItems();
 
         if (items.length === 0) {
@@ -57,8 +58,9 @@ export default class TableBody extends React.Component<TableBodyProps, {}> {
                             Column = columnFactory(type);
                         }
 
-                        return <Column 
+                        return <Column
                                     { ...column }
+                                    extra={extra}
                                     value={columnValue}
                                     row={item}
                                     provider={provider}
