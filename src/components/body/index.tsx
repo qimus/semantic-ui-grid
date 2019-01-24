@@ -12,7 +12,7 @@ interface TableBodyProps {
     provider: AbstractProvider;
     columns: Column[],
     activePage: number;
-    rowOptions: { [prop: string]: any };
+    rowOptions: any;
     emptyMessage: any;
 }
 
@@ -67,12 +67,16 @@ export default class TableBody extends React.Component<TableBodyProps, {}> {
                     });
 
                     let currentRowOptions = {};
-                    for (let key in rowOptions) {
-                        let optionValue = rowOptions[key];
-                        if (typeof optionValue === 'function') {
-                            optionValue = optionValue(item);
+                    if (typeof rowOptions === 'function') {
+                        currentRowOptions = rowOptions(item);
+                    } else {
+                        for (let key in rowOptions) {
+                            let optionValue = rowOptions[key];
+                            if (typeof optionValue === 'function') {
+                                optionValue = optionValue(item);
+                            }
+                            currentRowOptions[key] = optionValue;
                         }
-                        currentRowOptions[key] = optionValue;
                     }
 
                     return <Table.Row key={i} { ...currentRowOptions }>{items}</Table.Row>
