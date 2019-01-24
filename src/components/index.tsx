@@ -25,8 +25,9 @@ export interface ExtTableProps {
     sortable?: boolean;
     isFetching: boolean;
     filterNamePrefix: string;
-    rowOptions: { [ prop: string ]: any;}
+    rowOptions: { [ prop: string ]: any;};
     emptyMessage: any;
+    extra: { [ prop: string ]: any;};
 }
 
 export default class ExtTable extends React.Component<ExtTableProps, {}> {
@@ -86,7 +87,7 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
     };
 
     render() {
-        const { columns, header, provider, sortable, isFetching, rowOptions, emptyMessage } = this.props;
+        const { columns, header, provider, sortable, isFetching, rowOptions, emptyMessage, extra } = this.props;
 
         return (
             <React.Fragment>
@@ -108,6 +109,7 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
                         rowOptions={rowOptions}
                         provider={provider}
                         columns={columns}
+                        extra={extra}
                         activePage={this.state.activePage}
                         key={provider.getUniqKey()}/>
                     <TableFooter
