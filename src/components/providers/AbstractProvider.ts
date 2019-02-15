@@ -15,7 +15,8 @@ export type ProviderSettings = {
     perPage?: number,
     pageParamName?: string,
     limitParamName?: string,
-    pageLimits?: number[]
+    pageLimits?: number[],
+    defaultLimit?: number;
 };
 
 /**
@@ -51,6 +52,10 @@ export default abstract class AbstractProvider {
 
         if (params.pageLimits) {
             this.pageLimits = params.pageLimits;
+        }
+
+        if (params.defaultLimit) {
+            this.defaultLimit = params.defaultLimit;
         }
     }
 
@@ -111,11 +116,21 @@ export default abstract class AbstractProvider {
 
     /**
      * Set active page number
-     * @param page
+     * @param {Number} page
+     * @param {Number} limit
      * @return {AbstractProvider}
      */
-    setActivePage(page) {
-        this._navigate({ [this.pageParam]: page });
+    setActivePage(page, limit = null) {
+        let params = {};
+        if (page) {
+            params[this.pageParam] = page;
+        }
+
+        if (limit) {
+            params[this.limitParam] = limit;
+        }
+
+        this._navigate(params);
         return this;
     }
 
@@ -142,7 +157,7 @@ export default abstract class AbstractProvider {
      * @return {AbstractProvider}
      */
     setPerPage(perPage) {
-        this._navigate({ limit: perPage });
+        this._navigate({ [this.limitParam]: perPage });
         return this;
     }
 

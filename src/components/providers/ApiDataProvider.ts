@@ -45,9 +45,13 @@ export default class ApiDataProvider extends AbstractDataProvider {
         return this;
     }
 
-    setActivePage(page) {
-        super.setActivePage(page);
-        this.fetch({ page });
+    setActivePage(page, limit = null) {
+        super.setActivePage(page, limit);
+        let params = { page };
+        if (limit) {
+            params['limit'] = limit;
+        }
+        this.fetch(params);
 
         return this;
     }

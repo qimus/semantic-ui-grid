@@ -27,36 +27,25 @@ interface TableFooterProps {
 }
 
 export default class TableFooter extends React.Component<TableFooterProps, {}> {
-    state = {
-        perPage: null
-    };
-
-    componentDidMount() {
-        const { provider } = this.props;
-        this.setState({
-            perPage: provider.getPerPage()
-        });
-    }
-
     handleChangePerPage = (e, { value }) => {
         e.preventDefault();
         const { provider } = this.props;
-        provider.setPerPage(+value);
-        provider.setActivePage(1);
+        provider.setActivePage(1, +value);
         this.setState({ perPage: provider.getPerPage() });
         provider.fetch();
     };
 
     render() {
         const { provider, colSpan, handlePaginate } = this.props;
+        const perPage = provider.getPerPage();
 
         let limitOptions = [];
         provider.pageLimits.forEach(value => {
             limitOptions.push({ key: value, text: value, value });
         });
 
-        if (!provider.pageLimits.includes(this.state.perPage)) {
-            limitOptions.push({ key: this.state.perPage, text: this.state.perPage, value: this.state.perPage });
+        if (!provider.pageLimits.includes(perPage)) {
+            limitOptions.push({ key: perPage, text: perPage, value: perPage });
         }
 
         let toRecord = provider.getStartIndex() + provider.getPerPage();
@@ -94,7 +83,7 @@ export default class TableFooter extends React.Component<TableFooterProps, {}> {
                                                 fluid
                                                 selection
                                                 options={limitOptions}
-                                                value={this.state.perPage}
+                                                value={perPage}
                                                 onChange={this.handleChangePerPage}/>
                                         </div>
                                     </div>
