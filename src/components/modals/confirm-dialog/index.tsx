@@ -10,8 +10,8 @@ interface ConfirmDialogProps {
     confirmCallback: () => void;
     header: string;
     content: string;
-    cancelButtonTitle: string;
-    confirmButtonTitle: string;
+    cancelButtonTitle?: string;
+    confirmButtonTitle?: string;
 }
 
 class ConfirmDialog extends React.Component<ConfirmDialogProps, {}> {
