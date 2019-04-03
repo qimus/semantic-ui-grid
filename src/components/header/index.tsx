@@ -13,11 +13,12 @@ interface TableHeaderProps {
     columns: Column[],
     provider: AbstractProvider,
     header: string;
+    extra: { [prop: string]: any };
 }
 
 export default class TableHeader extends React.Component<TableHeaderProps, {}> {
     render() {
-        const { columns, provider, header } = this.props;
+        const { columns, provider, header, extra } = this.props;
         const sort = provider.getSort();
 
         let headerComponent;
@@ -49,7 +50,7 @@ export default class TableHeader extends React.Component<TableHeaderProps, {}> {
                             HeaderComponent = HeaderCell;
                         }
 
-                        return <HeaderComponent item={item} key={i} provider={provider} sort={fieldSort}/>
+                        return <HeaderComponent item={item} key={i} provider={provider} sort={fieldSort} extra={extra}/>
                     })}
                 </Table.Row>
             </Table.Header>

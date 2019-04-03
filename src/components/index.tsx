@@ -102,6 +102,7 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
                 <Table celled color='teal' striped sortable={sortable}>
                     <TableHeader
                         columns={columns}
+                        extra={extra}
                         provider={provider}
                         header={header}/>
                     <TableBody
