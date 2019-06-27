@@ -38,7 +38,7 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
         filterNamePrefix: 'filter'
     };
 
-    state = { activePage: 1, filter: null, filterForm: null };
+    state = { activePage: 1, filter: null };
 
     componentDidUpdate(prevProps: Readonly<ExtTableProps>, prevState, snapshot?: any): void {
         if (this.props.filter !== prevProps.filter) {
