@@ -40,25 +40,35 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
 
     state = { activePage: 1, filter: null };
 
-    componentDidUpdate(prevProps: Readonly<ExtTableProps>, prevState, snapshot?: any): void {
-        if (this.props.filter !== prevProps.filter) {
-            if (this.props.filter) {
-                const { filter, provider } = this.props;
-                this.setState({
-                    filter: createFilterForm({
-                        ...filter,
-                        handleFilter: this.handleFilter,
-                        initialValues: provider.getSearchParam(this.props.filterNamePrefix, {}),
-                        filterNamePrefix: this.props.filterNamePrefix
-                    })
-                });
-            } else {
-                this.setState({
-                    filter: null,
-                })
-            }
+    componentDidMount(): void {
+        if (this.props.filter) {
+            this.createFilter();
         }
     }
+
+    componentDidUpdate(prevProps: Readonly<ExtTableProps>, prevState, snapshot?: any): void {
+        if (this.props.filter !== prevProps.filter) {
+            this.createFilter();
+        }
+    }
+
+    createFilter = () => {
+        if (this.props.filter) {
+            const { filter, provider } = this.props;
+            this.setState({
+                filter: createFilterForm({
+                    ...filter,
+                    handleFilter: this.handleFilter,
+                    initialValues: provider.getSearchParam(this.props.filterNamePrefix, {}),
+                    filterNamePrefix: this.props.filterNamePrefix
+                })
+            });
+        } else {
+            this.setState({
+                filter: null,
+            })
+        }
+    };
 
     /**
      * Pagination handler
