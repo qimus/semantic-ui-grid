@@ -38,19 +38,25 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
         filterNamePrefix: 'filter'
     };
 
-    state = { activePage: 1, filter: null };
+    state = { activePage: 1, filter: null, filterForm: null };
 
     componentDidUpdate(prevProps: Readonly<ExtTableProps>, prevState, snapshot?: any): void {
-        if (this.props.filter && this.props.filter !== prevState.filter) {
-            const { filter, provider } = this.props;
-            this.setState({
-                filter: createFilterForm({
-                    ...filter,
-                    handleFilter: this.handleFilter,
-                    initialValues: provider.getSearchParam(this.props.filterNamePrefix, {}),
-                    filterNamePrefix: this.props.filterNamePrefix
+        if (this.props.filter !== prevProps.filter) {
+            if (this.props.filter) {
+                const { filter, provider } = this.props;
+                this.setState({
+                    filter: createFilterForm({
+                        ...filter,
+                        handleFilter: this.handleFilter,
+                        initialValues: provider.getSearchParam(this.props.filterNamePrefix, {}),
+                        filterNamePrefix: this.props.filterNamePrefix
+                    })
+                });
+            } else {
+                this.setState({
+                    filter: null,
                 })
-            })
+            }
         }
     }
 
