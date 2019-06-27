@@ -38,19 +38,19 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
         filterNamePrefix: 'filter'
     };
 
-    filter = null;
+    state = { activePage: 1, filter: null };
 
-    state = { activePage: 1 };
-
-    UNSAFE_componentWillMount() {
-        if (this.props.filter && !this.filter) {
+    componentDidUpdate(prevProps: Readonly<ExtTableProps>, prevState, snapshot?: any): void {
+        if (this.props.filter && this.props.filter !== prevState.filter) {
             const { filter, provider } = this.props;
-            this.filter = createFilterForm({
-                ...filter,
-                handleFilter: this.handleFilter,
-                initialValues: provider.getSearchParam(this.props.filterNamePrefix, {}),
-                filterNamePrefix: this.props.filterNamePrefix
-            });
+            this.setState({
+                filter: createFilterForm({
+                    ...filter,
+                    handleFilter: this.handleFilter,
+                    initialValues: provider.getSearchParam(this.props.filterNamePrefix, {}),
+                    filterNamePrefix: this.props.filterNamePrefix
+                })
+            })
         }
     }
 
@@ -91,7 +91,7 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
 
         return (
             <React.Fragment>
-                {this.filter}
+                {this.state.filter}
 
                 {isFetching && (
                     <Dimmer active inverted>
