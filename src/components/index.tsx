@@ -40,8 +40,20 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
 
     state = { activePage: 1, filter: null };
 
+    componentDidMount(): void {
+        if (this.props.filter) {
+            this.createFilter();
+        }
+    }
+
     componentDidUpdate(prevProps: Readonly<ExtTableProps>, prevState, snapshot?: any): void {
-        if (this.props.filter && this.props.filter !== prevState.filter) {
+        if (this.props.filter !== prevProps.filter) {
+            this.createFilter();
+        }
+    }
+
+    createFilter = () => {
+        if (this.props.filter) {
             const { filter, provider } = this.props;
             this.setState({
                 filter: createFilterForm({
@@ -50,9 +62,13 @@ export default class ExtTable extends React.Component<ExtTableProps, {}> {
                     initialValues: provider.getSearchParam(this.props.filterNamePrefix, {}),
                     filterNamePrefix: this.props.filterNamePrefix
                 })
+            });
+        } else {
+            this.setState({
+                filter: null,
             })
         }
-    }
+    };
 
     /**
      * Pagination handler
