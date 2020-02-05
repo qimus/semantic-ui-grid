@@ -6,6 +6,8 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:types && npm run build:js",
+    "build:types": "tsc --emitDeclarationOnly --skipLibCheck",
     "build:js": "npx babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
     "copy": " cp -r lib/* example/node_modules/semantic-grid/lib/"
   },
