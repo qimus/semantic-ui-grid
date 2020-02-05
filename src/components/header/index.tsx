@@ -31,11 +31,13 @@ export default class TableHeader extends React.Component<TableHeaderProps, {}> {
 
         return (
             <Table.Header>
-                <Table.Row>
-                    <Table.HeaderCell colSpan={columns.length}>
-                        {headerComponent}
-                    </Table.HeaderCell>
-                </Table.Row>
+                {headerComponent && (
+                    <Table.Row>
+                        <Table.HeaderCell colSpan={columns.length}>
+                            {headerComponent}
+                        </Table.HeaderCell>
+                    </Table.Row>
+                )}
                 <Table.Row>
                     {columns.map((item, i) => {
                         let fieldSort;

@@ -1,16 +1,12 @@
 import * as React from 'react'
+import { ReactNode } from 'react'
 import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
+import { Field, InjectedFormProps, reduxForm } from 'redux-form'
 import { get } from 'lodash'
-import {
-    Grid,
-    Form,
-    Button
-} from 'semantic-ui-react'
+import { Button, Form, Grid } from 'semantic-ui-react'
 
 import { factory } from './factory'
 import { ColumnOptions } from '../types'
-import {ReactNode} from "react";
 
 const styles = {
     form: {
@@ -27,7 +23,6 @@ const styles = {
 interface FilterProps {
     handleFilter: ((values: any,  names: any) => void);
     items: any[];
-    handleSubmit: (values) => any;
     itemsNames: any[];
     filterNamePrefix: string;
     options: ColumnOptions;
@@ -93,7 +88,7 @@ class FilterButtonComponent extends React.Component<FilterButtonComponentProps> 
     }
 }
 
-class Filter extends React.Component<FilterProps, {}> {
+class Filter extends React.Component<FilterProps & InjectedFormProps<{}, FilterProps>> {
     static defaultProps = {
         filterNamePrefix: 'filter',
         filterContainer: FilterContainer,
@@ -160,7 +155,7 @@ class Filter extends React.Component<FilterProps, {}> {
 }
 
 export function createFilterForm({ name, initialValues, items = [], component = Filter, ...props }) {
-    let Component = reduxForm({
+    let Component: React.ComponentType<Partial<FilterProps>> = reduxForm<{}, FilterProps>({
         form: name
     })(component);
 
