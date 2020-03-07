@@ -20,14 +20,16 @@
   "dependencies": {
     "history": "^4.7.2",
     "qs": "^6.5.2",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
     "react-redux": "^5.1.1",
     "react-router": "^4.3.1",
     "react-router-dom": "4.2.2",
     "redux": "^4.0.1",
     "redux-form": "^7.4.2",
-    "semantic-ui-react": "^0.83.0"
+    "semantic-ui-react": "^0.83"
+  },
+  "peerDependencies": {
+    "react": "^16.6",
+    "react-dom": "^16.6"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
@@ -44,6 +46,8 @@
     "awesome-typescript-loader": "^5.2.1",
     "babel-plugin-module-resolver": "^3.1.1",
     "gh-pages": "^2.0.1",
+    "react": "^16.6",
+    "react-dom": "^16.6",
     "source-map-loader": "^0.2.4",
     "typescript": "^3.1.6"
   },
